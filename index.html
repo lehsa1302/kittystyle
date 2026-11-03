@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>КиттиСтиль — отделочные работы в Мозыре</title>
+  <style>
+    :root {
+      --primary: #1e4e8c;
+      --primary-dark: #14335f;
+      --accent: #e67e22;
+      --accent-light: #fdf3e8;
+      --light-bg: #e8eef7;
+      --yellow: #f7c948;
+      --text: #1f2a37;
+      --muted: #64748b;
+      --white: #ffffff;
+      --background: #f8fafc;
+      --shadow: 0 14px 40px rgba(30, 78, 140, 0.10);
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      color: var(--text);
+      background: var(--background);
+      line-height: 1.6;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(248, 250, 252, 0.95);
+      border-bottom: 1px solid #e2e8f0;
+      backdrop-filter: blur(10px);
+    }
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--primary);
+      font-size: 20px;
+      font-weight: 700;
+    }
+    .logo-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: var(--light-bg);
+      font-size: 23px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--muted);
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 22px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--primary);
+      color: var(--white);
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.2s;
+    }
+    .button:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+    .menu-toggle {
+      display: none;
+      padding: 8px 12px;
+      border: 1px solid #dbe4ee;
+      border-radius: 10px;
+      background: white;
+      color: var(--primary);
+      cursor: pointer;
+      font-size: 20px;
+    }
+    .hero {
+      padding: 76px 0 88px;
+      overflow: hidden;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 50px;
+    }
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 18px;
+      padding: 7px 13px;
+      border-radius: 999px;
+      background: var(--light-bg);
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 700;
+    }
+    h1 {
+      max-width: 650px;
+      margin-bottom: 20px;
+      color: var(--primary-dark);
+      font-size: clamp(38px, 6vw, 65px);
+      line-height: 1.08;
+      letter-spacing: -2px;
+    }
+    .hero-text {
+      max-width: 550px;
+      margin-bottom: 28px;
+      color: var(--muted);
+      font-size: 18px;
+    }
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 14px;
+    }
+    .button-light {
+      padding: 12px 20px;
+      border: 1px solid #d5e0ee;
+      border-radius: 999px;
+      color: var(--primary);
+      font-weight: 700;
+      transition: background 0.2s;
+    }
+    .button-light:hover {
+      background: var(--light-bg);
+    }
+    .hero-art {
+      position: relative;
+      min-height: 370px;
+      display: grid;
+      place-items: center;
+      border-radius: 48% 52% 43% 57% / 48% 43% 57% 52%;
+      background: #e2ecf8;
+    }
+    .hero-illustration {
+      width: 245px;
+      height: 245px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--accent);
+      font-size: 110px;
+      box-shadow: var(--shadow);
+    }
+    .floating-note {
+      position: absolute;
+      padding: 13px 17px;
+      border-radius: 16px;
+      background: white;
+      box-shadow: var(--shadow);
+      color: var(--primary);
+      font-weight: 700;
+    }
+    .note-one {
+      top: 42px;
+      left: 0;
+      transform: rotate(-5deg);
+    }
+    .note-two {
+      right: 0;
+      bottom: 46px;
+      transform: rotate(4deg);
+    }
+    section {
+      padding: 76px 0;
+      scroll-margin-top: 75px;
+    }
+    .section-heading {
+      max-width: 680px;
+      margin: 0 auto 42px;
+      text-align: center;
+    }
+    .section-heading h2 {
+      margin-bottom: 12px;
+      color: var(--primary-dark);
+      font-size: clamp(30px, 4vw, 42px);
+      line-height: 1.2;
+    }
+    .section-heading p {
+      color: var(--muted);
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .card {
+      padding: 26px;
+      border: 1px solid #e2e8f0;
+      border-radius: 22px;
+      background: white;
+      box-shadow: 0 8px 24px rgba(30, 78, 140, 0.04);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+    .card-icon {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 18px;
+      border-radius: 16px;
+      background: var(--light-bg);
+      font-size: 26px;
+    }
+    .card h3 {
+      margin-bottom: 9px;
+      color: var(--primary-dark);
+      font-size: 20px;
+    }
+    .card p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+    .booking-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 42px;
+      align-items: start;
+    }
+    .booking-info h2 {
+      margin-bottom: 15px;
+      color: var(--primary-dark);
+      font-size: 38px;
+      line-height: 1.2;
+    }
+    .booking-info p {
+      margin-bottom: 18px;
+      color: var(--muted);
+    }
+    .contact-line {
+      margin-top: 12px;
+      color: var(--primary);
+      font-weight: 700;
+    }
+    .form-card {
+      padding: 28px;
+      border: 1px solid #e2e8f0;
+      border-radius: 22px;
+      background: white;
+      box-shadow: var(--shadow);
+    }
+    .form-card label {
+      display: block;
+      margin: 0 0 7px;
+      color: var(--primary-dark);
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .form-card input,
+    .form-card textarea {
+      width: 100%;
+      margin-bottom: 16px;
+      padding: 13px 14px;
+      border: 1px solid #d5e0ee;
+      border-radius: 12px;
+      outline: none;
+      background: #fff;
+    }
+    .form-card input:focus,
+    .form-card textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(30, 78, 140, 0.1);
+    }
+    .form-card textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+    .form-note {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    #form-message {
+      margin-top: 13px;
+      color: var(--primary);
+      font-weight: 700;
+    }
+    .footer {
+      padding: 28px 0;
+      background: var(--primary-dark);
+      color: white;
+    }
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 14px;
+    }
+    .footer a {
+      color: #cfe0f5;
+    }
+    @media (max-width: 800px) {
+      .nav-links {
+        position: absolute;
+        top: 76px;
+        left: 0;
+        right: 0;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 10px 20px 18px;
+        border-bottom: 1px solid #e2e8f0;
+        background: var(--background);
+      }
+      .nav-links.open {
+        display: flex;
+      }
+      .nav-links a {
+        display: block;
+        padding: 12px 0;
+      }
+      .nav > .button {
+        display: none;
+      }
+      .menu-toggle {
+        display: block;
+      }
+      .hero-grid,
+      .booking-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero {
+        padding-top: 55px;
+      }
+      .hero-art {
+        min-height: 300px;
+      }
+      .hero-illustration {
+        width: 190px;
+        height: 190px;
+        font-size: 85px;
+      }
+      .cards {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    @media (max-width: 560px) {
+      .container {
+        width: min(100% - 28px, 1120px);
+      }
+      section {
+        padding: 58px 0;
+      }
+      .cards {
+        grid-template-columns: 1fr;
+      }
+      .form-card {
+        padding: 20px;
+      }
+      .hero-art {
+        min-height: 260px;
+      }
+      .floating-note {
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <nav class="nav container" aria-label="Главная навигация">
+      <a class="logo" href="#home">
+        <span class="logo-icon">🎨</span>
+        <span>КиттиСтиль</span>
+      </a>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Открыть меню">☰</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home">Главная</a></li>
+        <li><a href="#services">Услуги</a></li>
+        <li><a href="#contacts">Контакты</a></li>
+      </ul>
+      <a class="button" href="#contacts">Заявка</a>
+    </nav>
+  </header>
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Отделочные работы</span>
+          <h1>Отделка, после которой не хочется ничего переделывать</h1>
+          <p class="hero-text">
+            Штукатурка, малярка, плитка, потолки и полы — аккуратно, по технологии
+            и в срок. Работаем в квартирах, домах и коммерческих помещениях.
+          </p>
+          <div class="hero-buttons">
+            <a class="button" href="#contacts">Рассчитать стоимость</a>
+          </div>
+        </div>
+        <div class="hero-art" aria-label="Иллюстрация отделочных работ">
+          <div class="hero-illustration"><img src="logo.png" alt="KittyStyle" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;"></div>
+          <div class="floating-note note-one">Ровные стены</div>
+          <div class="floating-note note-two">Идеальная плитка</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Наши услуги</span>
+          <h2>Все виды отделочных работ</h2>
+          <p>Делаем как для себя: чисто, аккуратно и с соблюдением технологий.</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="card-icon">🖌️</div>
+            <h3>Штукатурка и малярка</h3>
+            <p>Выравнивание стен и потолков, шпатлёвка, покраска — без волн и разводов.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">🧱</div>
+            <h3>Благоустройство территории: укладка брусчатки</h3>
+            <p>Создание долговечных и эстетичных дорожек, отмостков и площадок.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">🪚</div>
+            <h3>Монтаж перегородок</h3>
+            <p>Кирпичные и газосиликатные перегородки.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">🪵</div>
+            <h3>Полы и напольные покрытия</h3>
+            <p>Стяжка, ламинат, паркет, линолеум.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">🧻</div>
+            <h3>Декоративная отделка снаружи и внутри дома</h3>
+            <p>Комплексное оформление внешних стен и внутренних помещений современными материалами.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon">🔧</div>
+            <h3>Отделка под ключ</h3>
+            <p>Берём на себя цикл — от приёма материала до финальной уборки.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacts">
+      <div class="container booking-grid">
+        <div class="booking-info">
+          <span class="eyebrow">Будем рады сотрудничеству</span>
+          <h2>Оставьте заявку на расчёт отделки</h2>
+          <p>
+            Расскажите о задаче — приедем на замер, дадим смету и сроки без обязательств.
+          </p>
+          <div class="contact-line">📞 +375 (29) 549-27-71</div>
+          <div class="contact-line">✉️ leha.gonchar24@mail.ru</div>
+        </div>
+        <form class="form-card" id="contact-form">
+          <label for="name">Ваше имя</label>
+          <input id="name" name="name" type="text" placeholder="Например, Ольга" required>
+          <label for="phone">Телефон или e-mail</label>
+          <input id="phone" name="contact" type="text" placeholder="+375 00 000-00-00" required>
+          <label for="message">Коротко о задаче</label>
+          <textarea id="message" name="message" placeholder="Например, отделка санузла 4 м² плиткой"></textarea>
+          <button class="button" type="submit">Отправить заявку</button>
+          <p class="form-note">
+            Нажимая кнопку, вы соглашаетесь на обработку указанных данных.
+          </p>
+          <p id="form-message" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>© 2026 «КиттиСтиль» — отделочные работы</span>
+      <a href="#home">Вернуться наверх ↑</a>
+    </div>
+  </footer>
+  <script>
+    // Открытие и закрытие мобильного меню
+    const menuToggle = document.getElementById("menu-toggle");
+    const navLinks = document.getElementById("nav-links");
+    menuToggle.addEventListener("click", function () {
+      navLinks.classList.toggle("open");
+    });
+    // Закрываем меню после перехода по ссылке
+    navLinks.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        navLinks.classList.remove("open");
+      });
+    });
+    // Демонстрационная форма: данные не отправляются на сервер
+    const contactForm = document.getElementById("contact-form");
+    const formMessage = document.getElementById("form-message");
+    contactForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      formMessage.textContent =
+        "Спасибо! Заявка принята. Форма работает в демонстрационном режиме.";
+      contactForm.reset();
+    });
+  </script>
+</body>
+</html>
